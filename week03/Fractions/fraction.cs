@@ -1,14 +1,22 @@
 public class Fraction
 {
-    public int numerator;
-    public int denominator;
+    private int _numerator;
+    private int _denominator;
 
     public Fraction(int top, int bottom)
     {
-        numerator = top;
-        denominator = bottom; 
+        _numerator = top;
+        _denominator = bottom;
     }
 
-   
+    public int GetTop()
+    {
+        return _numerator;
+    }
+
+    public int GetBottom()
+    {
+        return _denominator;
+    }
 }
 
