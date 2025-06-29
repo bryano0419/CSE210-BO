@@ -5,6 +5,11 @@ public class Fraction
 
     public Fraction(int top, int bottom)
     {
+        if (bottom == 0)
+        {
+            throw new ArgumentException("Denominator cannot be zero.");
+        }
+
         _numerator = top;
         _denominator = bottom;
     }
@@ -19,4 +24,6 @@ public class Fraction
         return _denominator;
     }
 }
+
+
 
