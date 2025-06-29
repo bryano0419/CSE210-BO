@@ -3,27 +3,47 @@ public class Fraction
     private int _numerator;
     private int _denominator;
 
-    public Fraction(int top, int bottom)
+    public Fraction()
     {
-        if (bottom == 0)
+        _numerator = 1;
+        _denominator = 1;
+    }
+
+    public Fraction(int numerator)
+    {
+        _numerator = numerator;
+        _denominator = 1;
+    }
+
+    public Fraction(int numerator, int denominator)
+    {
+        if (denominator == 0)
         {
             throw new ArgumentException("Denominator cannot be zero.");
         }
-
-        _numerator = top;
-        _denominator = bottom;
+        _numerator = numerator;
+        _denominator = denominator;
     }
 
-    public int GetTop()
+    public int GetTop() => _numerator;
+    public int GetBottom() => _denominator;
+
+    public void SetTop(int numerator) => _numerator = numerator;
+
+    public void SetBottom(int denominator)
     {
-        return _numerator;
+        if (denominator == 0)
+        {
+            throw new ArgumentException("Denominator cannot be zero.");
+        }
+        _denominator = denominator;
     }
 
-    public int GetBottom()
-    {
-        return _denominator;
-    }
+    public string GetFractionString() => $"{_numerator}/{_denominator}";
+
+    public double GetDecimalValue() => (double)_numerator / _denominator;
 }
+
 
 
 
