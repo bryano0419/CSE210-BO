@@ -5,7 +5,6 @@ public class Reference
     private int _startVerse;
     private int _endVerse;
 
-    // For single verse (e.g., John 3:16)
     public Reference(string book, int chapter, int verse)
     {
         _book = book;
@@ -14,7 +13,6 @@ public class Reference
         _endVerse = verse;
     }
 
-    // For verse range (e.g., Proverbs 3:5-6)
     public Reference(string book, int chapter, int startVerse, int endVerse)
     {
         _book = book;
@@ -35,3 +33,5 @@ public class Reference
         }
     }
 }
+
+

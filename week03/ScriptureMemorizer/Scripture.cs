@@ -11,7 +11,6 @@ public class Scripture
     {
         _reference = reference;
         _words = new List<Word>();
-
         foreach (var word in text.Split(' '))
         {
             _words.Add(new Word(word));
@@ -20,23 +19,23 @@ public class Scripture
 
     public void HideRandomWords(int count)
     {
-        var available = _words.FindAll(w => !w.IsHidden());
-        for (int i = 0; i < count && available.Count > 0; i++)
+        var unhiddenWords = _words.FindAll(w => !w.IsHidden());
+        for (int i = 0; i < count && unhiddenWords.Count > 0; i++)
         {
-            int index = _random.Next(available.Count);
-            available[index].Hide();
-            available.RemoveAt(index);
+            int index = _random.Next(unhiddenWords.Count);
+            unhiddenWords[index].Hide();
+            unhiddenWords.RemoveAt(index);
         }
     }
 
     public string GetDisplayText()
     {
-        string text = _reference.GetDisplayText() + " ";
+        string result = _reference.GetDisplayText() + " ";
         foreach (var word in _words)
         {
-            text += word.GetDisplayText() + " ";
+            result += word.GetDisplayText() + " ";
         }
-        return text.Trim();
+        return result.Trim();
     }
 
     public bool IsCompletelyHidden()
@@ -44,4 +43,5 @@ public class Scripture
         return _words.TrueForAll(w => w.IsHidden());
     }
 }
+
 

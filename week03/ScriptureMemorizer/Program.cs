@@ -13,9 +13,9 @@ class Program
             Console.Clear();
             Console.WriteLine(scripture.GetDisplayText());
             Console.WriteLine("\nPress Enter to hide words or type 'quit' to exit.");
-            string input = Console.ReadLine();
 
-            if (input.ToLower() == "quit")
+            string input = Console.ReadLine();
+            if (input.Trim().ToLower() == "quit")
             {
                 break;
             }
@@ -26,10 +26,11 @@ class Program
             {
                 Console.Clear();
                 Console.WriteLine(scripture.GetDisplayText());
-                Console.WriteLine("\nAll words are now hidden. Good job!");
+                Console.WriteLine("\nAll words are hidden. Great job!");
                 break;
             }
         }
     }
 }
+
 
