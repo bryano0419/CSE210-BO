@@ -1,20 +1,37 @@
 public class Reference
 {
-    public string Book;
-    public int Chapter;
-    public int StartVerse;
-    public int EndVerse;
+    private string _book;
+    private int _chapter;
+    private int _startVerse;
+    private int _endVerse;
 
+    // For single verse (e.g., John 3:16)
     public Reference(string book, int chapter, int verse)
     {
-        Book = book;
-        Chapter = chapter;
-        StartVerse = verse;
-        EndVerse = 0;
+        _book = book;
+        _chapter = chapter;
+        _startVerse = verse;
+        _endVerse = verse;
     }
 
-    public string GetReference()
+    // For verse range (e.g., Proverbs 3:5-6)
+    public Reference(string book, int chapter, int startVerse, int endVerse)
     {
-        return Book + " " + Chapter + ":" + StartVerse + "-" + EndVerse;
+        _book = book;
+        _chapter = chapter;
+        _startVerse = startVerse;
+        _endVerse = endVerse;
+    }
+
+    public string GetDisplayText()
+    {
+        if (_startVerse == _endVerse)
+        {
+            return $"{_book} {_chapter}:{_startVerse}";
+        }
+        else
+        {
+            return $"{_book} {_chapter}:{_startVerse}-{_endVerse}";
+        }
     }
 }

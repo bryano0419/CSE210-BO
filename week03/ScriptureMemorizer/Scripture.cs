@@ -3,34 +3,45 @@ using System.Collections.Generic;
 
 public class Scripture
 {
-    public Reference reference;
-    public List<Word> words;
+    private Reference _reference;
+    private List<Word> _words;
+    private Random _random = new Random();
 
-    public Scripture(string referenceText, string scriptureText)
+    public Scripture(Reference reference, string text)
     {
-        reference = new Reference(referenceText, 1, 1);
-        string[] parts = scriptureText.Split(' ');
-        words = new List<Word>();
-        foreach (string part in parts)
+        _reference = reference;
+        _words = new List<Word>();
+
+        foreach (var word in text.Split(' '))
         {
-            words.Add(new Word(part));
+            _words.Add(new Word(word));
         }
     }
 
-    public void HideWords()
+    public void HideRandomWords(int count)
     {
-        Random rnd = new Random();
-        int index = rnd.Next(words.Count);
-        words[index].hidden = true;
+        var available = _words.FindAll(w => !w.IsHidden());
+        for (int i = 0; i < count && available.Count > 0; i++)
+        {
+            int index = _random.Next(available.Count);
+            available[index].Hide();
+            available.RemoveAt(index);
+        }
     }
 
-    public string Display()
+    public string GetDisplayText()
     {
-        string result = reference.GetReference() + " ";
-        foreach (var word in words)
+        string text = _reference.GetDisplayText() + " ";
+        foreach (var word in _words)
         {
-            result += word.Display() + " ";
+            text += word.GetDisplayText() + " ";
         }
-        return result;
+        return text.Trim();
+    }
+
+    public bool IsCompletelyHidden()
+    {
+        return _words.TrueForAll(w => w.IsHidden());
     }
 }
+
