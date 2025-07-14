@@ -1,9 +1,14 @@
-using System;
-
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Hello World! This is the OnlineOrdering Project.");
+        Address address = new Address();
+        Customer customer = new Customer();
+        Order order = new Order();
+
+        Product p = new Product();
+        order.products.Add(p);
+
+        Console.WriteLine(order.TotalCost());
     }
 }
