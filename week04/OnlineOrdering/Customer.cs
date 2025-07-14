@@ -1,10 +1,27 @@
 public class Customer
 {
-    public string name;
-    public Address address;
+    private string name;
+    private Address address;
 
-    public bool IsUSCustomer()
+    public Customer(string name, Address address)
     {
-        return address.country == "USA";
+        this.name = name;
+        this.address = address;
+    }
+
+    public bool LivesInUSA()
+    {
+        return address.IsInUSA();
+    }
+
+    public string GetName()
+    {
+        return name;
+    }
+
+    public string GetAddressString()
+    {
+        return address.GetFullAddress();
     }
 }
+

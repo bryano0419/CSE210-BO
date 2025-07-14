@@ -1,17 +1,47 @@
 using System.Collections.Generic;
+using System.Text;
 
 public class Order
 {
-    public List<Product> products;
-    public Customer customer;
+    private List<Product> products;
+    private Customer customer;
 
-    public double TotalCost()
+    public Order(Customer customer)
+    {
+        this.customer = customer;
+        products = new List<Product>();
+    }
+
+    public void AddProduct(Product product)
+    {
+        products.Add(product);
+    }
+
+    public double GetTotalCost()
     {
         double total = 0;
-        foreach (var item in products)
+        foreach (Product product in products)
         {
-            total += item.TotalPrice();
+            total += product.GetTotalCost();
         }
-        return total + 5;
+
+        double shipping = customer.LivesInUSA() ? 5 : 35;
+        return total + shipping;
+    }
+
+    public string GetPackingLabel()
+    {
+        StringBuilder label = new StringBuilder();
+        foreach (Product product in products)
+        {
+            label.AppendLine(product.GetPackingLabel());
+        }
+        return label.ToString();
+    }
+
+    public string GetShippingLabel()
+    {
+        return $"{customer.GetName()}\n{customer.GetAddressString()}";
     }
 }
+
