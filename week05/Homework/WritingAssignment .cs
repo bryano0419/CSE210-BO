@@ -2,15 +2,16 @@ public class WritingAssignment : Assignment
 {
     private string _title;
 
-    public WritingAssignment(string title)
-        : base("Mary Waters", "European History") // Hardcoded for now
+    public WritingAssignment(string studentName, string topic, string title)
+        : base(studentName, topic)
     {
         _title = title;
     }
 
     public string GetWritingInformation()
     {
-        return _title + " by " + _studentName; // Error: _studentName is private
+        return $"{_title} by {GetStudentName()}";
     }
 }
+
 
