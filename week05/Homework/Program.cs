@@ -1,9 +1,8 @@
-using System;
-
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the Homework Project.");
+        MathAssignment math = new MathAssignment("7.3", "8-19");
+        Console.WriteLine(math.GetSummary());
     }
 }
