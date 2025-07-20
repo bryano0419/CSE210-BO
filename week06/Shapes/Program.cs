@@ -1,9 +1,21 @@
 using System;
+using System.Collections.Generic;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Hello World! This is the Shapes Project.");
+        List<Shape> shapes = new List<Shape>
+        {
+            new Square("Red", 5),
+            new Rectangle("Green", 4, 6),
+            new Circle("Blue", 3)
+        };
+
+        foreach (Shape shape in shapes)
+        {
+            Console.WriteLine($"Color: {shape.GetColor()}, Area: {shape.GetArea():F2}");
+        }
     }
 }
+
